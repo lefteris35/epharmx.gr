@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ψηφιακή Κάρτα Φαρμακείου</title>
+    <!-- FontAwesome για Εικονίδια -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #00a86b; /* Φαρμακευτικό Πράσινο */
+            --secondary-color: #007a4b;
+            --dark-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --text-muted: #718096;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Κεντρική Κάρτα (Mobile First) */
+        .vcard-container {
+            background: var(--white);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Banner Φόντου */
+        .vcard-banner {
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+        }
+
+        /* Ενότητα Λογοτύπου & Τίτλου */
+        .vcard-header {
+            text-align: center;
+            padding: 0 24px 24px 24px;
+            position: relative;
+            margin-top: -60px;
+        }
+
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 16px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--white);
+        }
+
+        .logo-container i {
+            font-size: 48px;
+            color: var(--primary-color);
+        }
+
+        /* Αν έχετε δικό σας αρχείο εικόνας λογοτύπου, αντικαταστήστε το παραπάνω <i> με το παρακάτω:
+        .logo-container img {
+            width: 80%;
+            height: auto;
+        } */
+
+        .vcard-header h1 {
+            font-size: 24px;
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .vcard-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Κουμπιά Άμεσης Δράσης */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-call {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-call:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-direction {
+            background-color: var(--dark-color);
+            color: var(--white);
+        }
+
+        .btn-direction:hover {
+            background-color: #1a202c;
+        }
+
+        /* Στοιχεία Επικοινωνίας */
+        .info-section {
+            padding: 0 24px 24px 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e6f7f0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .info-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .info-content a, .info-content span {
+            font-size: 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Google Map */
+        .map-section {
+            padding: 0 24px 24px 24px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 180px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Social Media Links */
+        .social-section {
+            background-color: #f8fafc;
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid #edf2f7;
+        }
+
+        .social-section p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark-color);
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-icon.facebook:hover { color: #1877f2; }
+        .social-icon.instagram:hover { color: #e1306c; }
+        .social-icon.viber:hover { color: #7360f2; }
+    </style>
+</head>
+<body>
+
+    <div class="vcard-container">
+        <!-- Banner -->
+        <div class="vcard-banner"></div>
+
+        <!-- Header (Λογότυπο & Όνομα) -->
+        <div class="vcard-header">
+            <div class="logo-container">
+                <!-- Εικονίδιο Φαρμακείου ως Placeholder Λογοτύπου -->
+                <i class="fa-solid fa-mortar-pestle"></i>
+            </div>
+            <h1>Φαρμακείο Μαρίας Μεντζελοπούλου και ΣΙΑ Ο.Ε.</h1>
+            <p>Υγεία · Φροντίδα · Εμπιστοσύνη</p>
+        </div>
+
+        <!-- Κουμπιά Άμεσης Κλήσης / Πλοήγησης -->
+        <div class="action-buttons">
+            <a href="tel:+302109340154" class="btn btn-call">
+                <i class="fa-solid fa-phone"></i> Κλήση
+            </a>
+            <a href="https://google.com" target="_blank" class="btn btn-direction">
+                <i class="fa-solid fa-location-arrow"></i> Οδηγίες
+            </a>
+        </div>
+
+        <!-- Στοιχεία Επικοινωνίας -->
+        <div class="info-section">
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="info-content">
+                    <p>Διεύθυνση</p>
+                    <span>Κωνσταντινουπόλεως 46, Νέα Σμύρνη, Αθήνα</span>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="info-content">
+                    <p>Email</p>
+                    <a href="mailto:epharmx@gmail.com">epharmx@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="info-content">
+                    <p>Ωράριο Λειτουργίας</p>
+                    <span>Δευ - Παρ: 08:00 - 21:00 | Σάβ: 09:00 - 14:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Google Map -->
+        <div class="map-section">
+            <div class="map-container">
+                <!-- Αντικαταστήστε το src με το δικό σας embed link από το Google Maps αν επιθυμείτε συγκεκριμένη πινέζα -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.2140305125768!2d23.708849776249284!3d37.95037690202443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bc53b77ff06b%3A0x7fe5faeecbb38258!2zzpzOkc6hzpnOkSDOnM6Vzp3OpM6WzpXOm86fzqDOn86lzpvOn86lIM6azpHOmSDOo86ZzpEgzp8uzpUu!5e1!3m2!1sen!2sgr!4v1793790588787!5m2!1sen!2sgr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-section">
+            <p>Ακολουθήστε μας</p>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://viber.com" target="_blank" class="social-icon viber"><i class="fa-brands fa-viber"></i></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
