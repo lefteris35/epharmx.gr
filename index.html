@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ψηφιακή Κάρτα Φαρμακείου</title>
     <!-- FontAwesome για Εικονίδια -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="https://cloudflare.com">
     <!-- Google Fonts (Inter) -->
     <link href="https://googleapis.com" rel="stylesheet">
@@ -157,7 +159,7 @@
         .info-icon {
             width: 40px;
             height: 40px;
-            background-color: #e6f7f0;
+            background-color: #fff;
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -273,7 +275,7 @@
         <!-- Στοιχεία Επικοινωνίας -->
         <div class="info-section">
             <div class="info-item">
-                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="info-icon"><i class="fa-solid fa-location-dot" style="color:#007a4b;"></i></div>
                 <div class="info-content">
                     <p>Διεύθυνση</p>
                     <span>Κωνσταντινουπόλεως 46, Νέα Σμύρνη, Αθήνα</span>
@@ -281,7 +283,8 @@
             </div>
 
             <div class="info-item">
-                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <!--<div class="info-icon"><i class="fa-solid fa-envelope"></i></div>-->
+                <div class="info-icon"><i class="fa-regular fa-envelope" style="color: #007a4b;"></i></div>
                 <div class="info-content">
                     <p>Email</p>
                     <a href="mailto:epharmx@gmail.com">epharmx@gmail.com</a>
@@ -289,10 +292,19 @@
             </div>
 
             <div class="info-item">
-                <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+              <!--  <div class="info-icon"><i class="fa-solid fa-clock"></i><i class="fa-regular fa-clock" style="color: rgb(47, 130, 47);"></i></div>-->
+                <div class="info-icon"><i class="fa-regular fa-clock" style="color: #007a4b;"></i></div>
                 <div class="info-content">
                     <p>Ωράριο Λειτουργίας</p>
                     <span> Δευ - Τετ: 08:00 - 14:30 <br> Τρι - Πεμ - Παρ: 08:00 - 14:00 | 17:00 - 20:00</span>
+                </div>
+            </div>
+            <div class="info-item">
+              <!--  <div class="info-icon"><i class="fa-solid fa-clock"></i><i class="fa-regular fa-clock" style="color: rgb(47, 130, 47);"></i></div>-->
+                <div class="info-icon"><i class="fa-solid fa-globe" style="color: #007a4b;"></i></div>
+                <div class="info-content">
+                    <p>Website</p>
+                    <a href="https://epharmx.gr">epharmx.gr</a>
                 </div>
             </div>
         </div>
